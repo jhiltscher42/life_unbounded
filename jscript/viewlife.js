@@ -106,41 +106,7 @@ require(["newlife","camera","jquery.mousewheel","statistics"],function(life,came
 		    });
 		myCamera=$("#lifeCam").data("camera");
 
-		$("#reset").click(function(){
-			theBoard.clear();
-			myCamera.modelIsUpdated();
-		    });
-
-		$("#import_action").click(function(){
-			var importArray=$("#importText").val().replace(/[ \t]/g,"").split("\n");
-
-			myCamera.supercedeHandler('click',function(oldHandler){
-				var currentHandler=function(coords,event){
-				    var row=Math.floor(coords.Y/squareHeight);
-				    var col=Math.floor(coords.X/squareWidth);
-				    currentHandler=oldHandler.handler;  //do this function once, then make it replace itself with its predecessor
-				    importArray.forEach(function(el,y){
-					    el.split("").forEach(function(cell,x){
-						    if (cell=="O") theBoard.toggleCell(col+y,row+x); 
-						}); 
-					});
-				    myCamera.modelIsUpdated();
-				};
-				return function(coords,event){
-				    return currentHandler(coords,event);
-				}
-			    });
-					    
-		    });
-
-		$(document).keydown(function(ev){
-			if (String.fromCharCode(ev.keyCode)=="I"){
-			    $("#importForm").css("z-index",20).show();
-			}
-			else if (String.fromCharCode(ev.keyCode)=="R"){
-			    myModel.setRandom(myCamera.getLastCoords());
-			}
-		    });
+		
 
 		theBoard.bind("population",$("#population").find(".val"));
 		theBoard.bind("generation",$("#generation").find(".val"));
@@ -158,6 +124,19 @@ require(["newlife","camera","jquery.mousewheel","statistics"],function(life,came
 				myCamera.setView({center:coords});
 			    }
 		    });
+		$("#controls").click(function(ev){
+			if (ev.target==this){
+				myModel.toggleAnimation();
+			}
+		})
+
+		$("#zoomOut").click(function(){
+			myCamera.zoom(1.4);
+		});
+
+		$("#zoomIn").click(function(){
+			myCamera.zoom(1/1.4);
+		})
 		myCamera.addHandler(['rightclick'],function(coords){
 			myModel.toggleAnimation();
 		    });

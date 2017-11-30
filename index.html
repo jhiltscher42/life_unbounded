@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head><title>Conway's Game Of Life</title>
 <script src="./jscript/requireNoCache.js"
@@ -6,9 +5,11 @@
 	<style>
 		html, body {
 			height:100%; width:100%;
+			background-color:brown;
+			margin:0px;
 		}
 
-		#controls {
+		#layout {
 			background-color: yellow;
 			width:100%;
 			height:100%;
@@ -17,12 +18,16 @@
 	</style>
 </head>
 <body>
-<div id='controls'>
-<div style="width:90%; height:90%; padding:5%" camWidth="2000" camHeight="2000" class="camera"
+	<table id='layout'>
+		<tr height=5%><td width=5%>&nbsp;</td><td width=90% id='controls'>&nbsp;</td><td></td></tr>
+		<tr height=90%><td id='zoomOut'>&nbsp;</td><td>
+<div style="width:100%; height:100%; margin:0%" camWidth="2000" camHeight="2000" class="camera"
 	id="lifeCam">
 
 </div>
-</div>
+</td><td id='zoomIn'>&nbsp;</td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
 </body>
 </html>
 
