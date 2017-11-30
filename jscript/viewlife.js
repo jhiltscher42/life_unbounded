@@ -72,12 +72,14 @@ require(["newlife","camera","jquery.mousewheel","statistics"],function(life,came
 	    this.toggleAnimation=function(){
 		animate=!animate;
 		if (animate){
+			$(".isAnimating").text("PAUSE");
 		    animateThread=setInterval(function(){
 			    theBoard.nextGeneration();
 			    if (theBoard.shouldStopGenerating()) 
 				{
 				    clearInterval(animateThread);
 				    animate=false;
+					$(".isAnimating").text("GO");
 				}
 			    movementTick++;
 			    if (!(movementTick % 10))
@@ -91,7 +93,8 @@ require(["newlife","camera","jquery.mousewheel","statistics"],function(life,came
 		}
 		else
 		    {
-			clearInterval(animateThread);
+   				$(".isAnimating").text("GO");
+				clearInterval(animateThread);
 		    }
 	    }
 
@@ -101,9 +104,7 @@ require(["newlife","camera","jquery.mousewheel","statistics"],function(life,came
 	
 
 	$(document).ready(function(){
-		$("#importForm").find("input[type=submit]").click(function(){
-			$("#importForm").css("z-index",-20);
-		    });
+		
 		myCamera=$("#lifeCam").data("camera");
 
 		
@@ -137,6 +138,12 @@ require(["newlife","camera","jquery.mousewheel","statistics"],function(life,came
 		$("#zoomIn").click(function(){
 			myCamera.zoom(1/1.4);
 		})
+
+		$("#reset").click(function(){
+			theBoard.clear();
+			setTimeout(myModel.toggleAnimation.bind(myModel),100);
+		})
+
 		myCamera.addHandler(['rightclick'],function(coords){
 			myModel.toggleAnimation();
 		    });

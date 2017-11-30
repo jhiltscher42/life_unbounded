@@ -14,23 +14,26 @@
 		}
 
 		#layout {
-			background-color: yellow;
+			background-color: #673ab7;
 			width:100%;
 			height:100%;
 			position: absolute;
+			font-size:xx-large;
+			color:white;
+			text-align: center;
 		}
 	</style>
 </head>
 <body>
 	<table id='layout'>
-		<tr height=5%><td width=5%>&nbsp;</td><td width=90% id='controls'>&nbsp;</td><td></td></tr>
-		<tr height=90%><td id='zoomOut'>&nbsp;</td><td>
+		<tr height=5%><td width=5%>&nbsp;</td><td width=90% class='isAnimating' id='controls'>GO</td><td></td></tr>
+		<tr height=90%><td id='zoomOut'>Z<br/>O<br/>O<br/>M<br/><br/>O<br/>U<br/>T</td><td>
 <div style="width:100%; height:100%; margin:0%" camWidth="2000" camHeight="2000" class="camera"
 	id="lifeCam">
 
 </div>
-</td><td id='zoomIn'>&nbsp;</td></tr>
-<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</td><td id='zoomIn'>Z<br/>O<br/>O<br/>M<br/><br/>I<br/>N</td></tr>
+<tr><td>&nbsp;</td><td id='reset'>RESET</td><td>&nbsp;</td></tr>
 </table>
 </body>
 </html>
